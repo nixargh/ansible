@@ -1,0 +1,25 @@
+namespace: nixargh
+name: ansible
+
+version: 0.1.0
+
+readme: README.md
+authors:
+  - nixargh <nixargh@protonmail.com>
+description: A set of Ansible roles I created for my own use, which I don't mind to share with anyone.
+
+license:
+- GPL-3.0
+license_file: LICENSE
+
+tags:
+  - geesefs
+
+dependencies: {}
+
+repository: https://github.com/nixargh/ansible
+documentation: https://github.com/nixargh/ansible
+homepage: https://github.com/nixargh/ansible
+issues: https://github.com/nixargh/ansible/issues
+
+build_ignore: []

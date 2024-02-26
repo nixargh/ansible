@@ -1,0 +1,24 @@
+---
+- name: Create mount base directory
+  ansible.builtin.file:
+    state: directory
+    path: "{{ geesefs_mount_dir }}"
+    owner: root
+    group: root
+    mode: '0755'
+
+- name: Create mount directories
+  ansible.builtin.file:
+    state: directory
+    path: "{{ geesefs_mount_dir }}/{{ geesefs_bucket_name_prefix }}{{ item }}"
+    mode: '0755'
+  loop: "{{ geesefs_buckets }}"
+
+- name: Create cache directories
+  ansible.builtin.file:
+    state: directory
+    path: "{{ geesefs_cache_dir }}/{{ geesefs_bucket_name_prefix }}{{ item }}"
+    owner: "{{ geesefs_user }}"
+    group: "{{ geesefs_user }}"
+    mode: '0755'
+  loop: "{{ geesefs_buckets }}"

@@ -1,0 +1,9 @@
+---
+- name: Create credentials file for systemd service
+  ansible.builtin.template:
+    src: aws_credentials.j2
+    dest: "{{ geesefs_credentials_file }}"
+    owner: root
+    group: root
+    mode: '0640'
+  notify: "restart geesefs services"

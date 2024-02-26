@@ -1,0 +1,38 @@
+---
+# System settings
+geesefs_user: rutube
+geesefs_uid: 5001
+geesefs_group: rutube
+geesefs_gid: 5001
+geesefs_mount_dir: /mnt/geesefs
+geesefs_cache_dir: /mnt/geesefs/cache
+geesefs_files_limit: 10000
+geesefs_memory_limit: 3072
+geesefs_credentials_file: /etc/default/geesefs_credentials
+geesefs_debug: false
+
+# Installation settings
+geesefs_version: "0.40.1"
+geesefs_source: https://github.com/yandex-cloud/geesefs/releases/download
+geesefs_binary: /usr/local/bin/geesefs
+
+# S3 settings
+#
+# Keyless works only from instance at Yandex Cloud
+geesefs_keyless: true
+geesefs_aws_access_key_id: ""
+geesefs_aws_secret_access_key: ""
+
+geesefs_endpoint: https://storage.yandexcloud.net
+geesefs_region: ""
+geesefs_storage_class: STANDARD_IA
+
+geesefs_bucket_name_prefix: "{{ ansible_hostname }}-"
+geesefs_buckets: []
+
+geesefs_parallel_parts: 32
+geesefs_max_flushers: 32
+geesefs_part_size: 50
+geesefs_single_part: 50
+geesefs_read_ahead_large: 20
+geesefs_enable_patch: false

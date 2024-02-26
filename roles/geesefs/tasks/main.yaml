@@ -1,0 +1,29 @@
+---
+- name: Install software ans its dependencies
+  ansible.builtin.import_tasks: install.yaml
+  become: true
+  tags:
+    - geesefs
+    - geesefs_install
+
+- name: Configure system (create directories, set permissions...)
+  ansible.builtin.import_tasks: configure.yaml
+  become: true
+  tags:
+    - geesefs
+    - geesefs_configure
+
+- name: Configure auth
+  ansible.builtin.import_tasks: auth.yaml
+  become: true
+  tags:
+    - geesefs
+    - geesefs_auth
+  when: not geesefs_keyless | bool
+
+- name: Create systemd stuff
+  ansible.builtin.import_tasks: service.yaml
+  become: true
+  tags:
+    - geesefs
+    - geesefs_service

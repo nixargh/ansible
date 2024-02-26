@@ -1,0 +1,13 @@
+---
+- name: Install fuse package
+  ansible.builtin.package:
+    name: fuse
+    state: present
+
+- name: Download GeeseFS binary
+  ansible.builtin.get_url:
+    url: "{{ geesefs_source }}/v{{ geesefs_version }}/geesefs-linux-amd64"
+    dest: "{{ geesefs_binary }}"
+    owner: root
+    group: root
+    mode: "0755"

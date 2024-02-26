@@ -1,4 +1,20 @@
 ---
+- name: Create GeeseFS group
+  ansible.builtin.group:
+    state: present
+    name: "{{ geesefs_user }}"
+    system: true
+  register: geesefs_group
+
+- name: Create GeeseFS user
+  ansible.builtin.user:
+    state: present
+    name: "{{ geesefs_user }}"
+    group: "{{ geesefs_user }}"
+    system: true
+    create_home: true
+  register: geesefs_user
+
 - name: Create mount base directory
   ansible.builtin.file:
     state: directory
@@ -15,6 +31,7 @@
   loop: "{{ geesefs_buckets }}"
 
 - name: Create cache directories
+  when: geesefs_cache_dir != ""
   ansible.builtin.file:
     state: directory
     path: "{{ geesefs_cache_dir }}/{{ geesefs_bucket_name_prefix }}{{ item }}"

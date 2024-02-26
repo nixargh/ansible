@@ -1,13 +1,11 @@
 ---
 # System settings
-geesefs_user: rutube
-geesefs_uid: 5001
-geesefs_group: rutube
-geesefs_gid: 5001
+geesefs_user: geesefs
+geesefs_group: geesefs
 geesefs_mount_dir: /mnt/geesefs
-geesefs_cache_dir: /mnt/geesefs/cache
+geesefs_cache_dir: ""
 geesefs_files_limit: 10000
-geesefs_memory_limit: 3072
+geesefs_memory_limit: 1024
 geesefs_credentials_file: /etc/default/geesefs_credentials
 geesefs_debug: false
 
@@ -27,7 +25,7 @@ geesefs_endpoint: https://storage.yandexcloud.net
 geesefs_region: ""
 geesefs_storage_class: STANDARD_IA
 
-geesefs_bucket_name_prefix: "{{ ansible_hostname }}-"
+geesefs_bucket_name_prefix: ""
 geesefs_buckets: []
 
 geesefs_parallel_parts: 32

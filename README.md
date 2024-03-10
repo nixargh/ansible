@@ -4,3 +4,4 @@ A set of Ansible roles I created for my own use, which I don't mind to share wit
 
 ## Roles
 - `geesefs`: the role to FUSE mount S3 buckets using [GeeseFS](https://github.com/yandex-cloud/geesefs).
+- `duplicity`: only installation tasks as it hasn't goes further ([Duplicity](https://duplicity.gitlab.io/docs.html) site).

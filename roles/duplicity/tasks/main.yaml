@@ -1,0 +1,7 @@
+---
+- name: Install
+  ansible.builtin.import_tasks: install.yaml
+  become: true
+  tags:
+    - duplicity
+    - duplicity_install

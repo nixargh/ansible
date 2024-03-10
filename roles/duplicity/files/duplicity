@@ -1,0 +1,8 @@
+#!/usr/bin/env python3
+"""Startup for terrarium.reauth."""
+
+from duplicity.__main__ import dup_run
+
+
+if __name__ == '__main__':
+    dup_run()

@@ -1,12 +1,12 @@
 ---
-- name: Install software ans its dependencies
+- name: Install
   ansible.builtin.import_tasks: install.yaml
   become: true
   tags:
     - geesefs
     - geesefs_install
 
-- name: Configure system (create directories, set permissions...)
+- name: Configure
   ansible.builtin.import_tasks: configure.yaml
   become: true
   tags:

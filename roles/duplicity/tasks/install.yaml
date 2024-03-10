@@ -1,0 +1,34 @@
+---
+- name: Install dependencies
+  ansible.builtin.package:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - gettext
+    - librsync2
+    - librsync-dev
+    - gpg
+
+- name: Install PIP requrements
+  ansible.builtin.package:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - python3-pip
+    - python3-setuptools
+
+- name: Install Python package from PIP  # noqa: package-latest
+  ansible.builtin.pip:
+    name: "{{ item }}"
+    state: latest
+  loop:
+    - pip
+    - setuptools
+    - fasteners
+    - duplicity
+
+- name: Create entrypoint
+  ansible.builtin.copy:
+    src: duplicity
+    dest: /usr/local/bin/duplicity
+    mode: "0755"

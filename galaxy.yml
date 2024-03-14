@@ -1,7 +1,7 @@
 namespace: nixargh
 name: ansible
 
-version: 0.3.0
+version: 1.0.0
 
 readme: README.md
 authors:
@@ -9,11 +9,13 @@ authors:
 description: A set of Ansible roles I created for my own use, which I don't mind to share with anyone.
 
 license:
-- GPL-3.0
+  - GPL-3.0-only
 license_file: LICENSE
 
 tags:
+  - linux
   - geesefs
+  - duplicity
 
 dependencies: {}
 

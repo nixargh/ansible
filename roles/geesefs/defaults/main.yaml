@@ -10,7 +10,7 @@ geesefs_credentials_file: /etc/default/geesefs_credentials
 geesefs_debug: false
 
 # Installation settings
-geesefs_version: "0.40.1"
+geesefs_version: "0.40.3"
 geesefs_source: https://github.com/yandex-cloud/geesefs/releases/download
 geesefs_binary: /usr/local/bin/geesefs
 
@@ -28,9 +28,9 @@ geesefs_storage_class: STANDARD_IA
 geesefs_bucket_name_prefix: ""
 geesefs_buckets: []
 
-geesefs_parallel_parts: 32
-geesefs_max_flushers: 32
+geesefs_parallel_parts: 4
+geesefs_max_flushers: 4
 geesefs_part_size: 50
 geesefs_single_part: 50
 geesefs_read_ahead_large: 20
-geesefs_enable_patch: false
+geesefs_enable_patch: true

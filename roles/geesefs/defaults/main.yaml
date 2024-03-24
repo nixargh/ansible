@@ -30,7 +30,7 @@ geesefs_buckets: []
 
 geesefs_parallel_parts: 4
 geesefs_max_flushers: 4
-geesefs_part_sizes: 5:1000,25:1000,1
+geesefs_part_sizes: 5:1000,25:1000,125
 geesefs_single_part: 5
 geesefs_read_ahead_large: 20
 geesefs_enable_patch: true

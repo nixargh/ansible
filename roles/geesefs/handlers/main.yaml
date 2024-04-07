@@ -1,5 +1,6 @@
 ---
 - name: Restart geesefs services
+  become: true
   ansible.builtin.systemd:
     name: geesefs.target
     state: restarted

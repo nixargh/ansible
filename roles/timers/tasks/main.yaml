@@ -1,0 +1,7 @@
+---
+- name: Systemd
+  ansible.builtin.import_tasks: systemd.yaml
+  become: true
+  tags:
+    - timers
+    - timers_systemd

@@ -1,0 +1,16 @@
+# Managed by Ansible role: timers
+
+[Unit]
+Description={{ item.value.description }}
+Requires=network-online.target
+After=network-online.target
+
+[Service]
+User={{ item.value.user }}
+Group={{ item.value.group }}
+
+Type=oneshot
+ExecStart={{ item.value.command }}
+
+[Install]
+WantedBy=multi-user.target

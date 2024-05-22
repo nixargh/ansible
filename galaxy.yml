@@ -1,7 +1,7 @@
 namespace: nixargh
 name: ansible
 
-version: 1.0.0
+version: 1.2.0
 
 readme: README.md
 authors:
@@ -16,6 +16,7 @@ tags:
   - linux
   - geesefs
   - duplicity
+  - timers
 
 dependencies: {}
 

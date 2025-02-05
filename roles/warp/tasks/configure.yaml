@@ -1,0 +1,6 @@
+---
+- name: Create warp config
+  ansible.builtin.template:
+    src: mdm.xml.j2
+    dest: /var/lib/cloudflare-warp/mdm.xml
+    mode: '0644'

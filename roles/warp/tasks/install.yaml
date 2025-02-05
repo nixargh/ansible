@@ -1,0 +1,20 @@
+---
+- name: Add Cloudflare repository
+  block:
+    - name: Download Cloudflare repository GPG key
+      ansible.builtin.get_url:
+        url: "{{ warp_repository }}/pubkey.gpg"
+        dest: /etc/apt/keyrings/cloudflare.asc
+        mode: "0644"
+
+    - name: Add Cloudflare repository
+      ansible.builtin.apt_repository:
+        repo: "deb [arch=amd64 signed-by=/etc/apt/keyrings/cloudflare.asc] {{ warp_repository }} {{ ansible_distribution_release }} main"
+        filename: cloudflare
+        state: present
+
+- name: Install Cloudflare warp package
+  ansible.builtin.apt:
+    name: "{{ warp_package }}"
+    state: "{{ warp_version }}"
+    update_cache: true

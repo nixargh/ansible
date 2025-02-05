@@ -1,0 +1,14 @@
+---
+- name: Install
+  ansible.builtin.import_tasks: install.yaml
+  become: true
+  tags:
+    - warp
+    - warp_install
+
+- name: Configure
+  ansible.builtin.import_tasks: configure.yaml
+  become: true
+  tags:
+    - warp
+    - warp_configure

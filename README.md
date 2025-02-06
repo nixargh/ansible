@@ -1,5 +1,16 @@
 # Ansible Collection - nixargh.ansible
 
+<!-- vim-markdown-toc GitLab -->
+
+* [Description](#description)
+* [Roles](#roles)
+* [Usage](#usage)
+    * [Add collection to requirements](#add-collection-to-requirements)
+    * [Install requirements](#install-requirements)
+    * [Use role](#use-role)
+
+<!-- vim-markdown-toc -->
+
 ## Description
 
 A set of Ansible roles I created for my own use, which I don't mind to share with anyone.

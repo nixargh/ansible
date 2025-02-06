@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [1.4.0] - 2025-02-06
 ### Added
 - `README.md` how to use section.
-- `warp` gcompletion generation.
+- `warp` shell completions generation.
 
 ## [1.3.0] - 2025-02-05
 ### Added

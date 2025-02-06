@@ -3,3 +3,4 @@ warp_repository: https://pkg.cloudflareclient.com
 warp_package: cloudflare-warp
 warp_version: present
 warp_organization: ""
+warp_completions_shell: bash

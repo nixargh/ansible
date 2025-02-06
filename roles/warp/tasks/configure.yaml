@@ -4,3 +4,23 @@
     src: mdm.xml.j2
     dest: /var/lib/cloudflare-warp/mdm.xml
     mode: '0644'
+
+- name: Generate shell completions
+  block:
+    - name: Generate shell completions
+      ansible.builtin.command:
+        argv:
+          - warp-cli
+          - --accept-tos
+          - generate-completions
+          - "{{ warp_completions_shell }}"
+      register: warp_completions
+      changed_when: warp_completions.rc != 0
+
+    - name: Write shell completions to file
+      ansible.builtin.copy:
+        dest: /etc/bash_completion.d/warp
+        content: "{{ warp_completions.stdout }}"
+        owner: root
+        group: root
+        mode: "0644"

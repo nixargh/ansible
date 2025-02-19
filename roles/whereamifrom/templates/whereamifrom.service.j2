@@ -1,0 +1,23 @@
+# Managed by Ansible role: whereamifrom
+
+[Unit]
+Description=Monitor network connections and get external IP location country
+Documentation=https://crates.io/crates/whereamifrom
+
+After=dbus.socket
+Requires=dbus.socket
+
+StartLimitIntervalSec=10
+StartLimitBurst=3
+
+[Service]
+Type=simple
+Restart=on-failure
+RestartSec=2
+
+Environment="RUST_LOG={{ whereamifrom_log_level }}"
+
+ExecStart=/usr/bin/env whereamifrom
+
+[Install]
+WantedBy=default.target

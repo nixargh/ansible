@@ -1,0 +1,9 @@
+---
+- name: Restart whereamifrom services
+  become: false
+  ansible.builtin.systemd:
+    name: whereamifrom.service
+    state: restarted
+    daemon_reload: true
+    scope: user
+  listen: "restart whereamifrom services"

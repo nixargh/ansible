@@ -24,3 +24,11 @@
         owner: root
         group: root
         mode: "0644"
+
+- name: Configure warp taskbar systemd unit
+  become: false
+  ansible.builtin.systemd_service:
+    name: warp-taskbar
+    enabled: "{{ warp_enable_taskbar }}"
+    state: "{{ 'start' if (warp_enable_taskbar) else 'stopped' }}"
+    scope: user

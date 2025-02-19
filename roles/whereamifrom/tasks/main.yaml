@@ -1,0 +1,15 @@
+---
+- name: Install
+  ansible.builtin.import_tasks: install.yaml
+  become: true
+  when: whereamifrom_install
+  tags:
+    - whereamifrom
+    - whereamifrom_install
+
+- name: Service
+  ansible.builtin.import_tasks: service.yaml
+  become: false
+  tags:
+    - whereamifrom
+    - whereamifrom_service

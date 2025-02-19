@@ -4,3 +4,4 @@ warp_package: cloudflare-warp
 warp_version: present
 warp_organization: ""
 warp_completions_shell: bash
+warp_enable_taskbar: false

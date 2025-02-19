@@ -1,0 +1,16 @@
+---
+- name: Create service unit
+  become: true
+  ansible.builtin.template:
+    src: whereamifrom.service.j2
+    dest: /usr/lib/systemd/user/whereamifrom.service
+    mode: '0644'
+  notify: "restart whereamifrom services"
+
+- name: Make sure user systemd service are started and enabled
+  ansible.builtin.systemd_service:
+    name: whereamifrom.service
+    state: started
+    enabled: true
+    daemon_reload: true
+    scope: user

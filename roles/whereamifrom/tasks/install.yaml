@@ -4,5 +4,5 @@
   community.general.cargo:
     name: whereamifrom
     state: "{{ 'latest' if (whereamifrom_install_version == 'latest') else 'present' }}"
-    version: "{{ whereamifrom_install_version }}"
+    version: "{{ '' if (whereamifrom_install_version == 'latest') else whereamifrom_install_version }}"
     path: "{{ whereamifrom_install_path }}"

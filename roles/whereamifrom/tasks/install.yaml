@@ -6,3 +6,4 @@
     state: "{{ 'latest' if (whereamifrom_install_version == 'latest') else 'present' }}"
     version: "{{ '' if (whereamifrom_install_version == 'latest') else whereamifrom_install_version }}"
     path: "{{ whereamifrom_install_path }}"
+  notify: "restart whereamifrom services"

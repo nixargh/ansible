@@ -1,0 +1,13 @@
+---
+- name: Install
+  ansible.builtin.import_tasks: install.yaml
+  become: true
+  tags:
+    - k9s
+    - k9s_install
+
+- name: Configure
+  ansible.builtin.import_tasks: configure.yaml
+  tags:
+    - k9s
+    - k9s_configure

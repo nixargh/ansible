@@ -1,0 +1,5 @@
+---
+- name: Install non-repo k9s deb package
+  ansible.builtin.apt:
+    deb: "{{ k9s_repository }}/v{{ k9s_version }}/k9s_linux_amd64.deb"
+    state: present

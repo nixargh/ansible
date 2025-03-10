@@ -1,0 +1,5 @@
+---
+k9s_repository: https://github.com/derailed/k9s/releases/download
+k9s_version: 0.40.6
+k9s_completions_shell: bash
+k9s_views_overrides: {}

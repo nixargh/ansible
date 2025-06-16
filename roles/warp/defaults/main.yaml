@@ -2,6 +2,13 @@
 warp_repository: https://pkg.cloudflareclient.com
 warp_package: cloudflare-warp
 warp_version: present
-warp_organization: ""
 warp_completions_shell: bash
 warp_enable_taskbar: false
+
+# Config options
+warp_organization: ""
+warp_organization_endpoint: ""
+warp_doh_in_tunnel: true
+warp_override_doh_endpoint: "{{ warp_organization_endpoint }}"
+warp_override_api_endpoint: "{{ warp_organization_endpoint }}"
+warp_override_warp_endpoint: "{{ warp_organization_endpoint }}:8080"

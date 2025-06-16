@@ -4,6 +4,6 @@ whereamifrom_install_cargo: true
 whereamifrom_install_version: latest
 
 # Cargo automatically appends /bin.
-whereamifrom_install_path: "$HOME/.local"
+whereamifrom_install_path: "{{ ansible_env.HOME }}/.local"
 
 whereamifrom_log_level: info

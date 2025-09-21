@@ -1,7 +1,7 @@
 namespace: nixargh
 name: ansible
 
-version: 1.7.0
+version: 1.8.0
 
 readme: README.md
 authors:
@@ -20,6 +20,7 @@ tags:
   - warp
   - whereamifrom
   - k9s
+  - xlibre
 
 dependencies: {}
 

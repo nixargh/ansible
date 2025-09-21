@@ -1,0 +1,20 @@
+---
+- name: Add XLibre repository
+  block:
+    - name: Download XLibre repository GPG key
+      ansible.builtin.get_url:
+        url: "{{ xlibre_repository }}/key.asc"
+        dest: /etc/apt/keyrings/xlibre.asc
+        mode: "0644"
+
+    - name: Add XLibre repository
+      ansible.builtin.apt_repository:
+        repo: "deb [arch=amd64 signed-by=/etc/apt/keyrings/xlibre.asc] {{ xlibre_repository }}/ubuntu {{ ansible_distribution_release }} main"
+        filename: xlibre
+        state: present
+
+- name: Install xlibre package
+  ansible.builtin.apt:
+    name: "{{ xlibre_package }}"
+    state: "{{ xlibre_version }}"
+    update_cache: true

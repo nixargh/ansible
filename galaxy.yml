@@ -1,7 +1,7 @@
 namespace: nixargh
 name: ansible
 
-version: 1.8.0
+version: 1.9.0
 
 readme: README.md
 authors:
@@ -21,6 +21,7 @@ tags:
   - whereamifrom
   - k9s
   - xlibre
+  - teamspeak
 
 dependencies: {}
 

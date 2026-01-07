@@ -1,0 +1,8 @@
+---
+
+teamspeak_repository: https://files.teamspeak-services.com/releases
+teamspeak_version: 3.13.7
+teamspeak_arch: amd64
+teamspeak_client: true
+teamspeak_server: false
+teamspeak_dir: /var/lib/teamspeak

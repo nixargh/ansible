@@ -1,0 +1,13 @@
+---
+- name: Install
+  ansible.builtin.import_tasks: install.yaml
+  become: true
+  tags:
+    - teamspeak
+    - teamspeak_install
+
+- name: Service
+  ansible.builtin.import_tasks: service.yaml
+  tags:
+    - teamspeak
+    - teamspeak_service

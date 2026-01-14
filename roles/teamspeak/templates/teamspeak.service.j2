@@ -1,0 +1,25 @@
+# Managed by Ansible role: teamspeak
+
+[Unit]
+Description=A server for audio communication
+Documentation=https://www.teamspeak.com/en/
+
+After=syslog.target network.target remote-fs.target nss-lookup.target network-online.target
+Requires=network-online.target
+
+StartLimitIntervalSec=10
+StartLimitBurst=3
+
+[Service]
+User={{ teamspeak_user }}
+Group={{ teamspeak_group }}
+Type=simple
+Restart=on-failure
+RestartSec=2
+
+Environment="TS3SERVER_LICENSE=accept"
+WorkingDirectory={{ teamspeak_dir }}/teamspeak3-server_linux_{{ teamspeak_arch }}
+ExecStart={{ teamspeak_dir }}/teamspeak3-server_linux_{{ teamspeak_arch }}/ts3server
+
+[Install]
+WantedBy=multi-user.target

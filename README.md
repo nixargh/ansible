@@ -24,7 +24,7 @@ A set of Ansible roles I created for my own use, which I don't mind to share wit
 - `whereamifrom`: the role to configure systemd unit that runs [whereamifrom](https://crates.io/crates/whereamifrom) daemon. Installation of binary is optional via Cargo.
 - `k9s`: the role to install and configure [k9s](https://k9scli.io/) utility.
 - `xlibre`: switch to [XLibre Xserver](https://github.com/X11Libre/xserver?tab=readme-ov-file).
-- `teamspeak`: a server and client for audio communication application - [TeamSpeak](https://www.teamspeak.com/en/).
+- `teamspeak`: a server (version 3) for audio communication application - [TeamSpeak](https://www.teamspeak.com/en/). Client isn't implemented as it uses very weird installer script generated using Makeself.
 
 ## Usage
 

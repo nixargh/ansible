@@ -6,7 +6,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [1.9.0] - 2026-01-07
 ### Added
-- `teamspeak` role.
+- `teamspeak` role (server version 3 only).
 
 ## [1.8.0] - 2025-09-21
 ### Added

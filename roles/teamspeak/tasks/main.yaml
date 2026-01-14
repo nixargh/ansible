@@ -6,8 +6,8 @@
     - teamspeak
     - teamspeak_install
 
-- name: Configure
-  ansible.builtin.import_tasks: configure.yaml
+- name: Service
+  ansible.builtin.import_tasks: service.yaml
   tags:
     - teamspeak
-    - teamspeak_configure
+    - teamspeak_service

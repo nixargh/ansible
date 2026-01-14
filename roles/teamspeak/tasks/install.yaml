@@ -1,31 +1,45 @@
 ---
 - name: Install teamspeak server
   when: teamspeak_server
-  become: false
+  become: true
   block:
+    - name: Create Teamspeak group
+      ansible.builtin.group:
+        state: present
+        name: "{{ teamspeak_user }}"
+        system: true
+
+    - name: Create Teamspeak user
+      ansible.builtin.user:
+        state: present
+        name: "{{ teamspeak_user }}"
+        group: "{{ teamspeak_user }}"
+        system: true
+        create_home: true
+
     - name: Install deb dependencies
       ansible.builtin.package:
         name: fuse
         state: present
 
-  ¦ - name: Create tmp directory
-  ¦ ¦ ansible.builtin.file:
-  ¦ ¦ ¦ path: "/tmp/teamspeak_server"
-  ¦ ¦ ¦ state: directory
+    - name: Create tmp directory
+      ansible.builtin.file:
+        state: directory
+        path: "/tmp/teamspeak_server"
+        mode: '0755'
 
-  ¦ - name: Download & unarchive Teamspeak server
-  ¦ ¦ ansible.builtin.unarchive:
-        deb: "{{ teamspeak_repository }}/server/{{ teamspeak_version }}/teamspeak3-server_linux_{{ teamspeak_arch }}-{{ teamspeak_version }}.tar.bz2"
-  ¦ ¦ ¦ dest: "/tmp/teamspeak_server"
-  ¦ ¦ ¦ remote_src: true
+    - name: Download & unarchive Teamspeak server
+      ansible.builtin.unarchive:
+        src: "{{ teamspeak_repository }}/server/{{ teamspeak_version }}/teamspeak3-server_linux_{{ teamspeak_arch }}-{{ teamspeak_version }}.tar.bz2"
+        dest: "/tmp/teamspeak_server"
+        remote_src: true
 
-  ¦ - name: Copy files
-  ¦ ¦ ansible.builtin.copy:
-  ¦ ¦ ¦ src: "/tmp/teamspeak_server"
-  ¦ ¦ ¦ dest: "{{ teamspeak_dir }}_server"
-  ¦ ¦ ¦ mode: "0755"
-
-  ¦ - name: Delete tmp file
-  ¦ ¦ ansible.builtin.file:
-  ¦ ¦ ¦ path: "/tmp/teamspeak_server"
-  ¦ ¦ ¦ state: absent
+    - name: Copy files
+      ansible.builtin.copy:
+        remote_src: true
+        src: "/tmp/teamspeak_server/teamspeak3-server_linux_{{ teamspeak_arch }}"
+        dest: "{{ teamspeak_dir }}"
+        mode: "0775"
+        directory_mode: "0775"
+        group: "{{ teamspeak_group }}"
+        force: true

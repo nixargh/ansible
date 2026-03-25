@@ -1,0 +1,44 @@
+---
+- name: Create Telemt group
+  ansible.builtin.group:
+    state: present
+    name: "{{ telemt_user }}"
+    system: true
+
+- name: Create Telemt user
+  ansible.builtin.user:
+    state: present
+    name: "{{ telemt_user }}"
+    group: "{{ telemt_user }}"
+    system: true
+    create_home: true
+
+- name: Create tmp directory
+  ansible.builtin.file:
+    state: directory
+    path: "/tmp/telemt"
+    mode: '0755'
+
+- name: Create telemt directory
+  ansible.builtin.file:
+    state: directory
+    path: "{{ telemt_dir }}"
+    mode: '0755'
+    owner: "{{ telemt_user }}"
+    group: root
+
+- name: Download & unarchive Telemt binary
+  ansible.builtin.unarchive:
+    src: "{{ telemt_repository }}/download/{{ telemt_version }}/telemt-{{ telemt_arch }}-linux-gnu.tar.gz"
+    dest: "/tmp/telemt"
+    remote_src: true
+
+- name: Copy files
+  ansible.builtin.copy:
+    remote_src: true
+    src: "/tmp/telemt/telemt"
+    dest: "{{ telemt_binary }}"
+    mode: "0775"
+    directory_mode: "0775"
+    group: "{{ telemt_group }}"
+    force: true

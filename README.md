@@ -25,6 +25,7 @@ A set of Ansible roles I created for my own use, which I don't mind to share wit
 - `k9s`: the role to install and configure [k9s](https://k9scli.io/) utility.
 - `xlibre`: switch to [XLibre Xserver](https://github.com/X11Libre/xserver?tab=readme-ov-file).
 - `teamspeak`: a server (version 3) for audio communication application - [TeamSpeak](https://www.teamspeak.com/en/). Client isn't implemented as it uses very weird installer script generated using Makeself.
+- `telemt`: a Telegram proxy on Rust + Tokio - [telemt](https://github.com/telemt/telemt/tree/main).
 
 ## Usage
 

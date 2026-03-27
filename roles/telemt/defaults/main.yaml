@@ -1,0 +1,28 @@
+---
+# Release link example:
+#   https://github.com/telemt/telemt/releases/download/3.3.31/telemt-x86_64-linux-gnu.tar.gz
+telemt_repository: https://github.com/telemt/telemt/releases
+telemt_version: 3.3.31
+telemt_arch: x86_64
+telemt_dir: /var/lib/telemt
+telemt_binary: /usr/local/bin/telemt
+
+telemt_user: telemt
+telemt_group: "{{ telemt_user }}"
+
+telemt_config_dir: /etc/telemt
+telemt_config: "{{ telemt_config_dir }}/telemt.toml"
+
+telemt_service_nofile_limit: 65536
+
+# Configuration file vars.
+#
+telemt_general_links_public_host: "{{ ansible_facts['default_ipv4']['address'] }}"
+telemt_censorship_tls_domain: github.com
+telemt_server_api_read_only: true
+# To generate run: `openssl rand -hex 16`
+#
+# Format:
+# telemt_access_users:
+#   username: "32_hex_chars_secret"
+telemt_access_users: {}

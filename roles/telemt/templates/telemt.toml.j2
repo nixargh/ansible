@@ -1,0 +1,28 @@
+[general]
+use_middle_proxy = false
+
+[general.modes]
+classic = false
+secure = false
+tls = true
+
+[general.links]
+public_host = "{{ telemt_general_links_public_host }}"
+
+[server]
+port = 443
+
+[server.api]
+enabled = true
+listen = "127.0.0.1:9091"
+whitelist = ["127.0.0.1/32"]
+read_only = {{ telemt_server_api_read_only | lower }}
+
+# === Anti-Censorship & Masking ===
+[censorship]
+tls_domain = "{{ telemt_censorship_tls_domain }}"
+
+[access.users]
+{% for key, value in telemt_access_users.items() %}
+{{ key }} = "{{ value }}"
+{% endfor %}

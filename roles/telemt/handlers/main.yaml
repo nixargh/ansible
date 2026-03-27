@@ -1,0 +1,9 @@
+---
+- name: Restart telemt services
+  become: false
+  ansible.builtin.systemd:
+    name: telemt.service
+    state: restarted
+    daemon_reload: true
+    scope: user
+  listen: "restart telemt service"

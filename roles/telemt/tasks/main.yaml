@@ -1,0 +1,21 @@
+---
+- name: Install
+  ansible.builtin.import_tasks: install.yaml
+  become: true
+  tags:
+    - telemt
+    - telemt_install
+
+- name: Configure
+  ansible.builtin.import_tasks: configure.yaml
+  become: true
+  tags:
+    - telemt
+    - telemt_configure
+
+- name: Service
+  ansible.builtin.import_tasks: service.yaml
+  become: true
+  tags:
+    - telemt
+    - telemt_service

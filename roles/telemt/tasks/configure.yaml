@@ -1,0 +1,14 @@
+---
+- name: Create a Telemt configuration directory
+  ansible.builtin.file:
+    state: directory
+    path: "{{ telemt_config_dir }}"
+    mode: '0750'
+    group: "{{ telemt_group }}"
+
+- name: Create a Telemt configuration file
+  ansible.builtin.template:
+    src: telemt.toml.j2
+    dest: "{{ telemt_config }}"
+    mode: '0644'
+  notify: "restart telemt service"

@@ -8,6 +8,14 @@
   <key>doh_in_tunnel</key>
   <true/>
 {% endif %}
+{% if warp_enable_pmtud %}
+
+  <key>warp_tunnel_protocol</key>
+  <string>masque</string>
+
+  <key>enable_pmtud</key>
+  <true/>
+{% endif %}
 {% if warp_organization_endpoint %}
 
   <key>override_doh_endpoint</key>
@@ -19,4 +27,3 @@
   <key>override_warp_endpoint</key>
   <string>{{ warp_override_warp_endpoint }}</string>
 {% endif %}
-</dict>

@@ -1,0 +1,70 @@
+---
+- name: Ensure install directory exists
+  ansible.builtin.file:
+    path: "{{ snxrs_install_path }}"
+    state: directory
+    mode: "0755"
+
+- name: Check if snx-rs is already installed with correct version
+  block:
+    - name: Get installed version
+      ansible.builtin.command:
+        argv:
+          - "{{ snxrs_binary }}"
+          - --version
+      register: snxrs_installed_version
+      changed_when: false
+      failed_when: false
+
+    - name: Set version check fact
+      ansible.builtin.set_fact:
+        snxrs_needs_update: "{{ snxrs_installed_version.rc != 0 or snxrs_version not in snxrs_installed_version.stdout }}"
+
+- name: Download snx-rs binary archive
+  ansible.builtin.get_url:
+    url: "{{ snxrs_source }}/v{{ snxrs_version }}/snx-rs-v{{ snxrs_version }}-linux-x86_64.tar.xz"
+    dest: "/tmp/snx-rs-v{{ snxrs_version }}-linux-x86_64.tar.xz"
+    mode: "0644"
+  when: snxrs_needs_update
+
+- name: Extract snx-rs archive to temporary directory
+  ansible.builtin.unarchive:
+    src: "/tmp/snx-rs-v{{ snxrs_version }}-linux-x86_64.tar.xz"
+    dest: "/tmp"
+    remote_src: true
+  when: snxrs_needs_update
+
+- name: Copy snx-rs binary
+  ansible.builtin.copy:
+    src: "/tmp/snx-rs-v{{ snxrs_version }}-linux-x86_64/snx-rs"
+    dest: "{{ snxrs_install_path }}/snx-rs"
+    mode: "0755"
+    remote_src: true
+  when: snxrs_needs_update
+
+- name: Copy snxctl binary
+  ansible.builtin.copy:
+    src: "/tmp/snx-rs-v{{ snxrs_version }}-linux-x86_64/snxctl"
+    dest: "{{ snxrs_install_path }}/snxctl"
+    mode: "0755"
+    remote_src: true
+  when: snxrs_needs_update
+
+- name: Copy systemd service file
+  ansible.builtin.copy:
+    src: "/tmp/snx-rs-v{{ snxrs_version }}-linux-x86_64/snx-rs.service"
+    dest: "/etc/systemd/system/snx-rs.service"
+    mode: "0644"
+    remote_src: true
+  when:
+    - snxrs_needs_update
+    - snxrs_install_service
+
+- name: Cleanup temporary files
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: absent
+  loop:
+    - "/tmp/snx-rs-v{{ snxrs_version }}-linux-x86_64"
+    - "/tmp/snx-rs-v{{ snxrs_version }}-linux-x86_64.tar.xz"
+  when: snxrs_needs_update

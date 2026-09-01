@@ -1,0 +1,15 @@
+---
+- name: Install
+  ansible.builtin.import_tasks: install.yaml
+  become: true
+  when: snxrs_install
+  tags:
+    - snxrs
+    - snxrs_install
+
+- name: Configure
+  ansible.builtin.import_tasks: configure.yaml
+  become: false
+  tags:
+    - snxrs
+    - snxrs_configure

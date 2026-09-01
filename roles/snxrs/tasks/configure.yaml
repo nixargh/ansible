@@ -1,0 +1,65 @@
+---
+- name: Validate mandatory configuration parameters
+  ansible.builtin.assert:
+    that:
+      - snxrs_server_name != ""
+      - snxrs_login_type != ""
+    fail_msg: "snxrs_server_name and snxrs_login_type are mandatory and must be set"
+
+- name: Create snx-rs config file
+  ansible.builtin.copy:
+    dest: "{{ snxrs_config_file }}"
+    content: |
+      server-name={{ snxrs_server_name }}
+      login-type={{ snxrs_login_type }}
+      default-route={{ snxrs_default_route | lower }}
+      tunnel-type={{ snxrs_tunnel_type }}
+      ip-lease-time={{ snxrs_ip_lease_time }}
+    mode: "0600"
+
+- name: Create wrapper script
+  ansible.builtin.copy:
+    dest: "{{ snxrs_wrapper_path }}"
+    content: |
+      #!/bin/bash
+      set -e -u -o pipefail
+
+      CONFIG_FILE="/home/${USER}/.config/snx-rs.conf"
+
+      cmd="${1:-help}"
+
+      case "$cmd" in
+        connect)
+          sudo snx-rs --config-file "$CONFIG_FILE"
+          ;;
+        help)
+          echo "Usage: checkpoint {connect}"
+          ;;
+        *)
+          echo "Usage: checkpoint {connect}"
+          exit 1
+          ;;
+      esac
+    mode: "0755"
+  when: snxrs_install_wrapper
+
+- name: Generate shell completions
+  block:
+    - name: Generate shell completions
+      ansible.builtin.command:
+        argv:
+          - "{{ snxrs_binary }}"
+          - --completions
+          - "{{ snxrs_completions_shell }}"
+      register: snxrs_completions
+      changed_when: snxrs_completions.rc != 0
+
+    - name: Write shell completions to file
+      ansible.builtin.copy:
+        dest: "/etc/bash_completion.d/snx-rs"
+        content: "{{ snxrs_completions.stdout }}"
+        owner: root
+        group: root
+        mode: "0644"
+      when: snxrs_completions_shell == 'bash'
+  become: true

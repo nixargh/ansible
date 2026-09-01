@@ -1,0 +1,23 @@
+---
+snxrs_install: true
+snxrs_version: "6.2.4"
+snxrs_source: https://github.com/ancwrd1/snx-rs/releases/download
+snxrs_install_path: /usr/local/bin
+snxrs_binary: "{{ snxrs_install_path }}/snx-rs"
+
+snxrs_config_file: ~/.config/snx-rs.conf
+
+snxrs_configure: true
+
+snxrs_server_name: ""
+snxrs_login_type: ""
+snxrs_default_route: true
+snxrs_tunnel_type: ipsec
+snxrs_ip_lease_time: 259200
+
+snxrs_install_service: false
+
+snxrs_completions_shell: bash
+
+snxrs_install_wrapper: true
+snxrs_wrapper_path: ~/.local/bin/checkpoint

@@ -9,7 +9,7 @@ warp_enable_taskbar: false
 warp_organization: ""
 warp_organization_endpoint: ""
 warp_doh_in_tunnel: true
-warp_enable_pmtud: true
+warp_enable_pmtud: false
 warp_override_doh_endpoint: "{{ warp_organization_endpoint }}"
 warp_override_api_endpoint: "{{ warp_organization_endpoint }}"
 warp_override_warp_endpoint: "{{ warp_organization_endpoint }}:8080"

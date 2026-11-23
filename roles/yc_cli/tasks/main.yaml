@@ -1,6 +1,14 @@
 ---
 - name: Install
   ansible.builtin.import_tasks: install.yaml
+  become: true
   tags:
     - yc_cli
     - yc_cli_install
+
+- name: Configure shell completion
+  ansible.builtin.import_tasks: completion.yaml
+  become: true
+  tags:
+    - yc_cli
+    - yc_cli_completion

@@ -2,3 +2,6 @@
 yc_cli_install_path: /usr/local/bin/yc
 yc_cli_binary_dir: /usr/local/lib/yc-cli
 yc_cli_version: "1.47.0"
+yc_cli_completion_paths:
+  bash: /usr/share/bash-completion/completions/yc
+  zsh: /usr/share/zsh/vendor-completions/_yc

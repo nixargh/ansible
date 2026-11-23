@@ -1,0 +1,4 @@
+---
+yc_cli_install_path: /usr/local/bin/yc
+yc_cli_binary_dir: /usr/local/lib/yc-cli
+yc_cli_version: "1.47.0"

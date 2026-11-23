@@ -27,6 +27,7 @@ A set of Ansible roles I created for my own use, which I don't mind to share wit
 - `teamspeak`: a server (version 3) for audio communication application - [TeamSpeak](https://www.teamspeak.com/en/). Client isn't implemented as it uses very weird installer script generated using Makeself.
 - `telemt`: a Telegram proxy on Rust + Tokio - [telemt](https://github.com/telemt/telemt/tree/main).
 - `snxrs`: an opensource licent for Checkpoint VPN - [snx-rs](https://github.com/ancwrd1/snx-rs).
+- `yc_cli`: installs the [Yandex Cloud CLI](roles/yc_cli/README.md).
 
 ## Usage
 

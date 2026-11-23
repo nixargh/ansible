@@ -1,0 +1,5 @@
+---
+yc_cli_architectures:
+  x86_64: amd64
+  aarch64: arm64
+yc_cli_binary_path: "{{ yc_cli_binary_dir }}/yc-{{ yc_cli_version }}-{{ yc_cli_architectures[ansible_facts['architecture']] }}"

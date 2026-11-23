@@ -13,6 +13,9 @@ Supports Linux on x86_64 and aarch64, including Ubuntu.
     - nixargh.ansible.yc_cli
 ```
 
+Run the role selectively with `ansible-playbook playbook.yaml --tags yc_cli`.
+The `yc_cli_install` tag selects the same installation tasks.
+
 The role stores versioned binaries in `yc_cli_binary_dir` (default
 `/usr/local/lib/yc-cli`) and manages a symlink at `yc_cli_install_path`
 (default `/usr/local/bin/yc`). If a regular file already occupies the link

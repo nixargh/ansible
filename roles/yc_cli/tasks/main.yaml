@@ -1,31 +1,6 @@
 ---
-- name: Check Yandex Cloud CLI platform support
-  ansible.builtin.assert:
-    that:
-      - ansible_facts['system'] == 'Linux'
-      - ansible_facts['architecture'] in yc_cli_architectures
-    fail_msg: Yandex Cloud CLI requires Linux on x86_64 or aarch64.
-
-- name: Create Yandex Cloud CLI binary directory
-  ansible.builtin.file:
-    path: "{{ yc_cli_binary_dir }}"
-    state: directory
-    mode: "0755"
-  register: yc_cli_directory_result
-
-- name: Download versioned Yandex Cloud CLI binary
-  ansible.builtin.get_url:
-    url: >-
-      https://storage.yandexcloud.net/yandexcloud-yc/release/{{ yc_cli_version }}/linux/{{
-      yc_cli_architectures[ansible_facts['architecture']] }}/yc
-    dest: "{{ yc_cli_binary_path }}"
-    force: false
-    mode: "0755"
-  when: not (ansible_check_mode and yc_cli_directory_result.changed)
-
-- name: Link Yandex Cloud CLI into the executable path
-  ansible.builtin.file:
-    src: "{{ yc_cli_binary_path }}"
-    dest: "{{ yc_cli_install_path }}"
-    state: link
-    force: "{{ ansible_check_mode }}"
+- name: Install
+  ansible.builtin.import_tasks: install.yaml
+  tags:
+    - yc_cli
+    - yc_cli_install

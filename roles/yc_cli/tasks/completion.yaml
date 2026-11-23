@@ -1,0 +1,28 @@
+---
+- name: Generate Yandex Cloud CLI shell completion
+  become: false
+  ansible.builtin.command:
+    argv:
+      - "{{ yc_cli_install_path }}"
+      - completion
+      - "{{ item.key }}"
+  loop: "{{ yc_cli_completion_paths | dict2items }}"
+  register: yc_cli_completion_result
+  changed_when: false
+
+- name: Create shell completion directories
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: directory
+    mode: "0755"
+  loop: "{{ yc_cli_completion_paths.values() | map('dirname') | unique | list }}"
+
+- name: Install Yandex Cloud CLI shell completion
+  ansible.builtin.copy:
+    dest: "{{ item.item.value }}"
+    content: "{{ item.stdout }}\n"
+    mode: "0644"
+  loop: "{{ yc_cli_completion_result.results }}"
+  loop_control:
+    label: "{{ item.item.key }}"
+  when: item is not skipped

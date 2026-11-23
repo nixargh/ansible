@@ -1,6 +1,7 @@
 ---
 - name: Install
   ansible.builtin.import_tasks: install.yaml
+  become: true
   tags:
     - yc_cli
     - yc_cli_install

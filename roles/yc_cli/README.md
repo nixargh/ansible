@@ -8,10 +8,12 @@ Supports Linux on x86_64 and aarch64, including Ubuntu.
 ---
 - name: Install Yandex Cloud CLI on workstations
   hosts: workstations
-  become: true
   roles:
     - nixargh.ansible.yc_cli
 ```
+
+The installation tasks use privilege escalation. Pass `-K` if sudo prompts
+for a password.
 
 Run the role selectively with `ansible-playbook playbook.yaml --tags yc_cli`.
 The `yc_cli_install` tag selects the same installation tasks.
